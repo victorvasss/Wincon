@@ -5,6 +5,8 @@
 #include <stdlib.h> 
 #include <math.h>
 
+//тестовый коммит для гита
+
 int len_ryd=5;
 int ddde = 1;
 char field[20][20] = {0};
