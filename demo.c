@@ -5,8 +5,7 @@
 #include <stdlib.h> 
 #include <math.h>
 
-//тестовый коммит для гита
-//rehcjdfz
+
 int len_ryd=5;
 int ddde = 1;
 char field[20][20] = {0};
@@ -21,8 +20,9 @@ int difficulty = 0;
 int smechx = 33;
 int smechy = 4;
 
-	int xtemp=-1;
-	int ytemp = -1;
+int xtemp=-1;
+int ytemp = -1;
+
 struct a
 {
 	int len_ryd ;
@@ -94,8 +94,6 @@ int check_win(int players_sym, int x, int y)
 
 
 
-
-
 int sum3 = 0;
 int sum4 = 0;
 for (int i = y + 1; i < y + len_ryd && i <= y_max - 1; i++)
@@ -141,8 +139,8 @@ for (int i = y + 1,j = x + 1; (i < y + len_ryd)&&(j<x+len_ryd) && (i <= y_max - 
 		break;
 	}
 
-	if (i == y_max - 1) break;
-	if (j == x_max - 1) break;
+	if (i == y_max - 1 || j == x_max - 1) //MNZ
+		break;
 
 }
 
@@ -158,9 +156,8 @@ for (int i = y - 1, j = x - 1; (i > y - len_ryd) && (j > x - len_ryd) && (i >= 0
 		break;
 	}
 
-	if (i ==0) break;
-	if (j == 0) break;
-
+	if (i == 0 || j == 0) //MNZ
+		break;
 }
 
 
@@ -182,8 +179,8 @@ for (int i = y - 1, j = x + 1; (i > y - len_ryd) && (j < x + len_ryd) && (i >= 0
 		break;
 	}
 
-	if (i == 0) break;
-	if (j == x_max - 1) break;
+	if (i == 0 || j == x_max - 1) //MNZ
+		break;
 
 }
 
@@ -199,18 +196,10 @@ for (int i = y + 1, j = x - 1; (i < y + len_ryd) && (j > x - len_ryd) && (i <= y
 		break;
 	}
 
-	if (i == y_max-1) break;
-	if (j == 0) break;
+	if (i == y_max-1 || j == 0) //MNZ
+		break;
 
 }
-
-
-
-
-
-
-
-
 
 
 	/*gotoxy(13, 13);
@@ -223,22 +212,10 @@ for (int i = y + 1, j = x - 1; (i < y + len_ryd) && (j > x - len_ryd) && (i <= y
 	printf("%d", sum7 + sum8 + 1);
 	*/
 
-if (sum1 + sum2 + 1 == len_ryd)
+if ((sum1 + sum2 + 1 == len_ryd) || (sum3 + sum4 + 1 == len_ryd) || (sum5 + sum6 + 1 == len_ryd) || (sum7 + sum8 + 1 == len_ryd))
 {
 	return 1;
-}
-if (sum3 + sum4 + 1 == len_ryd)
-{
-	return 1;
-}
-if (sum5 + sum6 + 1 == len_ryd)
-{
-	return 1;
-}
-if (sum7 + sum8 + 1 == len_ryd)
-{
-	return 1;
-}
+} //MNZ
 
 return 0;
 
@@ -249,8 +226,6 @@ void play_load();
 void helper();
 int cennost(int players_sym,int x, int y)
 {
-
-
 	int sum1 = 0;
 	int sum2 = 0;
 	for (int i = x + 1; i < x + len_ryd&&i<=x_max-1; i++)
@@ -314,21 +289,7 @@ int cennost(int players_sym,int x, int y)
 		if (i == 0) break;
 	}
 
-
-
 	//ширина
-
-
-
-
-
-
-
-
-
-
-
-
 
 	int sum3 = 0;
 	int sum4 = 0;
@@ -365,7 +326,7 @@ int cennost(int players_sym,int x, int y)
 	int psum4 = 0;
 	for (int i = y + 1; (i < y + len_ryd)&&(i<= y_max - 1); i++)
 	{
-		if ((field[i][x] == players_sym)|| (field[i][x] == 0))
+		if ((field[i][x] == players_sym) || (field[i][x] == 0))
 		{
 			psum3++;
 		}
@@ -379,7 +340,7 @@ int cennost(int players_sym,int x, int y)
 
 	for (int i = y - 1; i > y - len_ryd && i>=0; i--)
 	{
-		if ((field[i][x] == players_sym)|| (field[i][x] == 0))
+		if ((field[i][x] == players_sym) || (field[i][x] == 0))
 		{
 			psum4++;
 		}
@@ -392,12 +353,6 @@ int cennost(int players_sym,int x, int y)
 	}
 
 	//высота
-
-
-
-
-
-
 
 	int sum5 = 0;
 	int sum6 = 0;
@@ -414,8 +369,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == y_max - 1) break;
-		if (j == x_max - 1) break;
+		if ((i == y_max - 1) || (j == x_max - 1)) 
+			break;
 
 	}
 
@@ -431,8 +386,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == 0) break;
-		if (j == 0) break;
+		if (i == 0 || j == 0) 
+			break;
 
 	}
 
@@ -445,7 +400,7 @@ int cennost(int players_sym,int x, int y)
 	 j = 0;
 	for (int i = y + 1, j = x + 1; (i < y + len_ryd) && (j < x + len_ryd) && (i <= y_max - 1) && (j <= x_max-1); i++, j++)
 	{
-		if ((field[i][j] == players_sym)|| (field[i][j] == 0))
+		if ((field[i][j] == players_sym) || (field[i][j] == 0))
 		{
 			psum5++;
 		}
@@ -454,15 +409,15 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == y_max - 1) break;
-		if (j == x_max - 1) break;
+		if ((i == y_max - 1) || (j == x_max - 1)) 
+			break;
 
 	}
 
 	j = 0;
 	for (int i = y - 1, j = x - 1; (i > y - len_ryd) && (j > x - len_ryd) && (i >= 0) && (j >= 0); i--, j--)
 	{
-		if ((field[i][j] == players_sym)|| (field[i][j] == 0))
+		if ((field[i][j] == players_sym) || (field[i][j] == 0))
 		{
 			psum6++;
 		}
@@ -471,8 +426,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == 0) break;
-		if (j == 0) break;
+		if (i == 0 || j == 0) 
+			break;
 
 	}
 
@@ -505,8 +460,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == 0) break;
-		if (j == x_max - 1) break;
+		if (i == 0 || (j == x_max - 1)) 
+			break;
 
 	}
 
@@ -522,8 +477,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == y_max - 1) break;
-		if (j == 0) break;
+		if (i == y_max - 1 || j == 0) 
+			break;
 
 	}
 
@@ -543,8 +498,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == 0) break;
-		if (j == x_max - 1) break;
+		if (i == 0 || (j == x_max - 1)) 
+			break;
 
 	}
 
@@ -560,8 +515,8 @@ int cennost(int players_sym,int x, int y)
 			break;
 		}
 
-		if (i == y_max - 1) break;
-		if (j == 0) break;
+		if ((i == y_max - 1) || j == 0) //MNZ
+			break;
 
 	}
 
@@ -575,7 +530,7 @@ int cennost(int players_sym,int x, int y)
 	 
 	if ((psum1 + psum2+1) >= len_ryd)
 	{
-		p1 = sum1 + sum2+1;
+		p1 = sum1 + sum2 + 1; //MZ
 		p1 = (int)pow(5, p1);
 
 	}
@@ -619,24 +574,22 @@ int load(char* filename);
 
 int vygoda(int players_sym, int x, int y)
 {
-
-
-
-    return cennost(players_sym,x,y)+cennost(anti(players_sym),x,y);
+	return cennost(players_sym, x, y) + cennost(anti(players_sym), x, y);
 }
 int main()
 {
-	field[1][0] =1;
+	//field[1][0] = 1;
 
-	for (int i = 0; i < y_max; i++)
+	/*for (int i = 0; i < y_max; i++)
 	{
 		for (int j = 0; j < x_max; j++)
 		{
 			field[i][j] = 0;
 		}
-	}
+	}*/
 
-	
+	memset(field, 0, y_max * x_max); //MNZ
+
 
 	con_init(80, 25);
 	show_cursor(0);
@@ -654,50 +607,43 @@ int main()
 
 void onesimvol (char d,int x,int y)
 {
-	if (d == 0)
+	switch (d) //MNZ
 	{
-		con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
-		gotoxy(x+smechx, y + smechy);
-		printf(" ");
+		case 0:
+			con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
+			gotoxy(x + smechx, y + smechy);
+			printf(" ");
+			break;
 
-	}
-	if (d == 1)
-	{
-		con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
-		gotoxy(x + smechx, y + smechy);
-		printf("o");
-	}
-	if (d == 2)
-	{
-		con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
-		gotoxy(x + smechx, y + smechy);
-		printf("x");
-	}
-	if (d == 3)
-	{
-		
-		con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
-		gotoxy(x + smechx, y + smechy);
-		printf(" ");
-	}
-	if (d == 4)
-	{
-		con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
-		gotoxy(x + smechx, y + smechy);
-		printf("o");
+		case 1:
+			con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
+			gotoxy(x + smechx, y + smechy);
+			printf("o");
+			break;
+	
+		case 2:
+			con_set_color(CON_CLR_BLACK, CON_CLR_GRAY);
+			gotoxy(x + smechx, y + smechy);
+			printf("x");
+			break;
+	
+		case 3:
+			con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
+			gotoxy(x + smechx, y + smechy);
+			printf(" ");
+			break;
 
-	}
-	if (d == 5)
-	{
-		con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
-		gotoxy(x + smechx, y + smechy);
-		printf("x");
+		case 4:
+			con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
+			gotoxy(x + smechx, y + smechy);
+			printf("o");
+			break;
 
-	}
-	if (d == 6)
-	{
-
-
+		case 5:
+			con_set_color(CON_CLR_GRAY, CON_CLR_BLACK);
+			gotoxy(x + smechx, y + smechy);
+			printf("x");
+			break;
 	}
 
 }
@@ -710,7 +656,7 @@ void otrisovka()
 	{
 		for (int j = 0; j < x_max; j++)
 		{
-			onesimvol(field[i][j],j ,i );
+			onesimvol(field[i][j], j, i);
 		}
 	}
 	
@@ -735,7 +681,6 @@ void player(int playerr)
 	while (1)
 	{
 
-		
 		gotoxy(x,y);
 
 		onesimvol(field[y][x]+3, x, y);
@@ -746,13 +691,13 @@ void player(int playerr)
 				main_menu();
 			if (c == KEY_UP && (y>0))
 			{
-				y--;
+				y--; //asm dec MZ
 				
 			}
-			if (c == 's' || c == 'S' || c == (unsigned char)'ы' || c == (unsigned char)'ы')
+			if (c == 's' || c == 'S' || c == (unsigned char)'ы' || c == (unsigned char)'Ы')
 			{
 
-				for (int i = 0; i < 20; i++)
+				/*for (int i = 0; i < 20; i++)
 				{
 					for (int j = 0; j < 20; j++)
 					{
@@ -760,7 +705,9 @@ void player(int playerr)
 
 					}
 
-				}
+				}*/
+
+				memcpy(tosave.field, field, 400); //MNZ
 
 				tosave.difficulty = difficulty;
 
@@ -776,7 +723,7 @@ void player(int playerr)
 			}
 			if (c == KEY_DOWN && (y<y_max-1) )
 			{
-				y++;
+				y++; //MZ inc/dec
 				
 			}
 			if (c == KEY_RIGHT && (x < x_max - 1) )
@@ -807,7 +754,7 @@ void player(int playerr)
 			}
 			if (c==32)
 			{
-				if (field[y][x]==0)
+				if (field[y][x] == 0)
 				{
 					field[y][x] = players_sym;
 					onesimvol(field[y][x] + 3, x, y);
@@ -845,7 +792,7 @@ void player(int playerr)
 
 		}
 		
-		if ((x!=oldx) || (y!=oldy))
+		if ((x != oldx) || (y != oldy))
 		{
 
 
@@ -890,7 +837,7 @@ void bot1(int bott)
 		{
 			
 			
-			if (field[i][j] == 0 )
+			if (field[i][j] == 0)
 			{
 
 				//temp = minimax(j, i, 2, 1, players_sym);
@@ -1422,7 +1369,8 @@ void main_menu()
 			else if (code == KEY_ENTER) // Нажата кнопка Enter
 			{
 				if (menu_active_idx == menu_items_count - 1) // Выбран последний пункт - это выход
-					return;
+					//return;
+					exit(0);
 
 				if (menu_active_idx == 0)
 					helper();
@@ -2115,13 +2063,15 @@ void dlinalinii()
 
 void play()
 {
-	for (int i = 0; i < 20; i++)
+	/*for (int i = 0; i < 20; i++)
 	{
 		for (int j = 0; j < 20; j++)
 		{
 			field[i][j] = 0;
 		}
-	}
+	}*/
+
+	memset(field, 0, 400);
 
 	//для загрузки
 	con_set_color(CON_CLR_BLACK, CON_CLR_BLACK);
@@ -2147,7 +2097,8 @@ void play()
 
 			}
 		}
-		if (polzovatelsym == 1)
+		//if (polzovatelsym == 1)
+		else //MNZ
 		{
 
 
@@ -2186,7 +2137,8 @@ void play()
 
 			}
 		}
-		if (polzovatelsym == 1)
+		//if (polzovatelsym == 1)
+		else
 		{
 
 
@@ -2225,7 +2177,8 @@ void play()
 
 			}
 		}
-		if (polzovatelsym == 1)
+		//if (polzovatelsym == 1)
+		else
 		{
 
 
@@ -2264,7 +2217,8 @@ void play()
 
 			}
 		}
-		if (polzovatelsym == 1)
+		//if (polzovatelsym == 1)
+		else
 		{
 
 
@@ -2446,13 +2400,15 @@ int load(char* filename)
 	{
 		for (int j = 0; j < 20; j++)
 		{
-			field[i][j] =  ptr->field[i][j];
+			field[i][j] = ptr->field[i][j];
 
 		}
-
 	}
 
-	difficulty =ptr->difficulty;
+	//будет ли работать? зачем ускорять сохранение?
+	//memcpy(field, ptr->field, 400);
+
+	difficulty = ptr->difficulty;
 
 	globalscet= ptr->globalscet;
 	len_ryd =ptr->len_ryd;
@@ -2509,12 +2465,3 @@ void about()
 	key_pressed_code();
 	return;
 }
-
-
-
-
-
-
-
-
-
