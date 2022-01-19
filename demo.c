@@ -68,7 +68,13 @@ int check_win(int players_sym, int x, int y)
 	{
 		if (field[y][i] == players_sym)
 		{
-			sum1++;
+			//sum1++;
+			_asm //MZ
+			{
+				mov eax, sum1
+				inc eax
+				mov sum1, eax
+			}
 		}
 		else
 		{
@@ -82,7 +88,13 @@ int check_win(int players_sym, int x, int y)
 	{
 		if (field[y][i] == players_sym)
 		{
-			sum2++;
+			//sum2++;
+			_asm //MZ
+			{
+				mov eax, sum2
+				inc eax
+				mov sum2, eax
+			}
 		}
 		else
 		{
@@ -100,7 +112,13 @@ for (int i = y + 1; i < y + len_ryd && i <= y_max - 1; i++)
 {
 	if (field[i][x] == players_sym)
 	{
-		sum3++;
+		//sum3++;
+		_asm //MZ
+		{
+			mov eax, sum3
+			inc eax
+			mov sum3, eax
+		}
 	}
 	else
 	{
@@ -114,7 +132,13 @@ for (int i = y - 1; i > y - len_ryd && i >= 0; i--)
 {
 	if (field[i][x] == players_sym)
 	{
-		sum4++;
+		//sum4++;
+		_asm 
+		{
+			mov eax, sum4
+			inc eax
+			mov sum4, eax
+		}
 	}
 	else
 	{
@@ -132,7 +156,13 @@ for (int i = y + 1,j = x + 1; (i < y + len_ryd)&&(j<x+len_ryd) && (i <= y_max - 
 {
 	if (field[i][j] == players_sym)
 	{
-		sum5++;
+		//sum5++;
+		_asm //MZ
+		{
+			mov eax, sum5
+			inc eax
+			mov sum5, eax
+		}
 	}
 	else
 	{
@@ -149,7 +179,13 @@ for (int i = y - 1, j = x - 1; (i > y - len_ryd) && (j > x - len_ryd) && (i >= 0
 {
 	if (field[i][j] == players_sym)
 	{
-		sum6++;
+		//sum6++;
+		_asm //MZ
+		{
+			mov eax, sum6
+			inc eax
+			mov sum6, eax
+		}
 	}
 	else
 	{
@@ -172,7 +208,13 @@ for (int i = y - 1, j = x + 1; (i > y - len_ryd) && (j < x + len_ryd) && (i >= 0
 {
 	if (field[i][j] == players_sym)
 	{
-		sum7++;
+		//sum7++;
+		_asm //MZ
+		{
+			mov eax, sum7
+			inc eax
+			mov sum7, eax
+		}
 	}
 	else
 	{
@@ -189,7 +231,13 @@ for (int i = y + 1, j = x - 1; (i < y + len_ryd) && (j > x - len_ryd) && (i <= y
 {
 	if (field[i][j] == players_sym)
 	{
-		sum8++;
+		//sum8++;
+		_asm //MZ
+		{
+			mov eax, sum8
+			inc eax
+			mov sum8, eax
+		}
 	}
 	else
 	{
@@ -232,7 +280,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[y][i] == players_sym)
 		{
-			sum1++;
+			//sum1++;
+			_asm //MZ
+			{
+				mov eax, sum1
+				inc eax
+				mov sum1, eax
+			}
 		}
 		else
 		{
@@ -246,7 +300,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[y][i] == players_sym)
 		{
-			sum2++;
+			//sum2++;
+			_asm //MZ
+			{
+				mov eax, sum2
+				inc eax
+				mov sum2, eax
+			}
 		}
 		else
 		{
@@ -265,7 +325,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[y][i] == players_sym)|| (field[y][i] == 0))
 		{
-			psum1++;
+			//psum1++;
+			_asm //MZ
+			{
+				mov eax, psum1
+				inc eax
+				mov psum1, eax
+			}
 		}
 		else
 		{
@@ -279,7 +345,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[y][i] == players_sym)|| (field[y][i] == 0))
 		{
-			psum2++;
+			//psum2++;
+			_asm //MZ
+			{
+				mov eax, psum1
+				inc eax
+				mov psum1, eax
+			}
 		}
 		else
 		{
@@ -297,7 +369,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][x] == players_sym)
 		{
-			sum3++;
+			//sum3++;
+			_asm //MZ
+			{
+				mov eax, sum3
+				inc eax
+				mov sum3, eax
+			}
 		}
 		else
 		{
@@ -311,7 +389,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][x] == players_sym)
 		{
-			sum4++;
+			//sum4++;
+			_asm //MZ
+			{
+				mov eax, sum4
+				inc eax
+				mov sum4, eax
+			}
 		}
 		else
 		{
@@ -328,7 +412,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][x] == players_sym) || (field[i][x] == 0))
 		{
-			psum3++;
+			//psum3++;
+			_asm //MZ
+			{
+				mov eax, psum3
+				inc eax
+				mov psum3, eax
+			}
 		}
 		else
 		{
@@ -342,7 +432,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][x] == players_sym) || (field[i][x] == 0))
 		{
-			psum4++;
+			//psum4++;
+			_asm //MZ
+			{
+				mov eax, psum4
+				inc eax
+				mov psum4, eax
+			}
 		}
 		else
 		{
@@ -362,7 +458,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][j] == players_sym)
 		{
-			sum5++;
+			//sum5++;
+			_asm //MZ
+			{
+				mov eax, sum5
+				inc eax
+				mov sum5, eax
+			}
 		}
 		else
 		{
@@ -379,7 +481,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][j] == players_sym)
 		{
-			sum6++;
+			//sum6++;
+			_asm //MZ
+			{
+				mov eax, sum6
+				inc eax
+				mov sum6, eax
+			}
 		}
 		else
 		{
@@ -402,7 +510,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][j] == players_sym) || (field[i][j] == 0))
 		{
-			psum5++;
+			//psum5++;
+			_asm //MZ
+			{
+				mov eax, psum5
+				inc eax
+				mov psum5, eax
+			}
 		}
 		else
 		{
@@ -419,7 +533,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][j] == players_sym) || (field[i][j] == 0))
 		{
-			psum6++;
+			//psum6++;
+			_asm //MZ
+			{
+				mov eax, psum6
+				inc eax
+				mov psum6, eax
+			}
 		}
 		else
 		{
@@ -453,7 +573,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][j] == players_sym)
 		{
-			sum7++;
+			//sum7++;
+			_asm //MZ
+			{
+				mov eax, sum7
+				inc eax
+				mov sum7, eax
+			}
 		}
 		else
 		{
@@ -470,7 +596,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if (field[i][j] == players_sym)
 		{
-			sum8++;
+			//sum8++;
+			_asm //MZ
+			{
+				mov eax, sum8
+				inc eax
+				mov sum8, eax
+			}
 		}
 		else
 		{
@@ -491,7 +623,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][j] == players_sym)|| (field[i][j] == 0))
 		{
-			psum7++;
+			//psum7++;
+			_asm //MZ
+			{
+				mov eax, psum7
+				inc eax
+				mov psum7, eax
+			}
 		}
 		else
 		{
@@ -508,7 +646,13 @@ int cennost(int players_sym,int x, int y)
 	{
 		if ((field[i][j] == players_sym)|| (field[i][j] == 0))
 		{
-			psum8++;
+			//psum8++;
+			_asm //MZ
+			{
+				mov eax, psum8
+				inc eax
+				mov psum8, eax
+			}
 		}
 		else
 		{
@@ -530,7 +674,7 @@ int cennost(int players_sym,int x, int y)
 	 
 	if ((psum1 + psum2+1) >= len_ryd)
 	{
-		p1 = sum1 + sum2 + 1; //MZ
+		p1 = sum1 + sum2 + 1; 
 		p1 = (int)pow(len_ryd, p1);
 
 	}
@@ -691,7 +835,13 @@ void player(int playerr)
 				main_menu();
 			if (c == KEY_UP && (y>0))
 			{
-				y--; //asm dec MZ
+				//y--; //asm dec MZ
+				_asm //MZ
+				{
+					mov eax, y
+					dec eax
+					mov y, eax
+				}
 				
 			}
 			if (c == 's' || c == 'S' || c == (unsigned char)'ы' || c == (unsigned char)'Ы')
@@ -723,18 +873,35 @@ void player(int playerr)
 			}
 			if (c == KEY_DOWN && (y<y_max-1) )
 			{
-				y++; //MZ inc/dec
+				//y++; //MZ inc/dec
+				_asm //MZ
+				{
+					mov eax, y
+					inc eax
+					mov y, eax
+				}
 				
 			}
 			if (c == KEY_RIGHT && (x < x_max - 1) )
 			{
-				x++;
+				//x++;
+				_asm //MZ
+				{
+					mov eax, x
+					inc eax
+					mov x, eax
+				}
 
 			}
 			if (c == KEY_LEFT && (x > 0))
 			{
-				x--;
-
+				//x--;
+				_asm //MZ
+				{
+					mov eax, x
+					dec eax
+					mov x, eax
+				}
 			}
 
 			if (c == KEY_ENTER)
@@ -907,7 +1074,7 @@ void bot1(int bott)
 //глубина 2 легк
 void bot(int bott)
 {
-
+	///clock_t start, end;
 	if (globalscet == x_max * y_max) return;
 
 	//перенос  в общую функцию
@@ -947,7 +1114,9 @@ void bot(int bott)
 			}
 		}
 	}
-
+	///end time
+	gotoxy(20, 20);
+	//fprintf();
 	globalscet++;
 
 
@@ -1135,7 +1304,7 @@ void bot3(int bott)
 			if (field[i][j] == 0)
 			{
 
-				temp = minimax(j, i, 4, 1, players_sym,-100000000,100000000);
+				temp = minimax(j, i, 6, 1, players_sym, -100000000, 100000000) + vygoda(players_sym, j, i);
 				//temp = vygoda(players_sym, j, i);
 				if (temp >= max)
 				{
@@ -1256,7 +1425,7 @@ long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol,int alpha,
 				{
 					
 
-					s = minimax(j, i, depth - 1, 0,symvol,score,beta) ;
+					s = minimax(j, i, depth - 1, 0, symvol, score, beta);
 					if (s > score) score = s;
 					if (score >= beta)
 					{
@@ -1284,7 +1453,7 @@ long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol,int alpha,
 			{
 				if (field[i][j] == 0)
 				{
-					s =  minimax(j, i, depth - 1, 1, symvol,alpha,score);
+					s = minimax(j, i, depth - 1, 1, symvol, alpha, score);
 					if (s < score) score = s;
 					if (score <= alpha)
 					{
@@ -2118,7 +2287,7 @@ void play()
 			}
 		}
 		//if (polzovatelsym == 1)
-		else //MNZ
+		else 
 		{
 
 
