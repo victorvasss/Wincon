@@ -36,7 +36,7 @@ struct a
 	int difficulty;
 
 };
-long long int minimax(int x, int y, int depth, int maxiPlayer, int symvol);
+long long int minimax(int x, int y, int depth, int maxiPlayer, int symvol,int alpha,int beta);
 
 int anti(int a)
 {
@@ -531,27 +531,27 @@ int cennost(int players_sym,int x, int y)
 	if ((psum1 + psum2+1) >= len_ryd)
 	{
 		p1 = sum1 + sum2 + 1; //MZ
-		p1 = (int)pow(5, p1);
+		p1 = (int)pow(len_ryd, p1);
 
 	}
 	if ((psum3 + psum4+1) >= len_ryd)
 	{
 
 		p2 = sum3 + sum4+1;
-		p2 = (int)pow(5, p2);
+		p2 = (int)pow(len_ryd, p2);
 
 	}
 	if ((psum5 + psum6+1) >= len_ryd)
 	{
 
 		p3 = sum5 + sum6+1;
-		p3 = (int)pow(5, p3);
+		p3 = (int)pow(len_ryd, p3);
 	}
 	if ((psum7 + psum8+1) >= len_ryd)
 	{
 
 		p4 = sum7+sum8+1;
-		p4 = (int)pow(5, p4);
+		p4 = (int)pow(len_ryd, p4);
 	}
 	/*gotoxy(13, 13);
 	printf("%d.", p1);
@@ -746,7 +746,7 @@ void player(int playerr)
 				gotoxy(13, 13);
 				printf("________________                      ");
 				gotoxy(13, 13);
-				printf("%d",minimax(x,y,4,1,2) );
+				printf("%d",minimax(x,y,4,1,2,-1000000,1000000) );
 				//gotoxy(15, 15);
 				//printf("%d", xtemp);
 				//gotoxy(17, 17);
@@ -934,7 +934,7 @@ void bot(int bott)
 			if (field[i][j] == 0)
 			{
 
-				temp = minimax(j, i, 2, 1, players_sym);
+				temp = minimax(j, i, 2, 1, players_sym,-100000000,100000000);
 				//temp = vygoda(players_sym, j, i);
 				if (temp > max)
 				{
@@ -969,7 +969,7 @@ void bot(int bott)
 	//int oldy = 0;
 	//получение извне кода нолика или крестика
 
-	gotoxy(15, 15);
+	//gotoxy(15, 15);
 	//printf("%d", minimax(x, y, 4, 1, players_sym));
 
 
@@ -1033,7 +1033,7 @@ void bot2(int bott)
 				
 				if (temp == max)
 				{
-					if (minimax(j, i, 4, 1, players_sym) > minimax(x, y, 4, 1, players_sym))
+					if (minimax(j, i, 4, 1, players_sym,-100000000,100000000) > minimax(x, y, 4, 1, players_sym,-100000000,100000000))
 					{
 						max = temp;
 						y = i;
@@ -1135,9 +1135,9 @@ void bot3(int bott)
 			if (field[i][j] == 0)
 			{
 
-				temp = minimax(j, i, 4, 1, players_sym);
+				temp = minimax(j, i, 4, 1, players_sym,-100000000,100000000);
 				//temp = vygoda(players_sym, j, i);
-				if (temp > max)
+				if (temp >= max)
 				{
 					max = temp;
 					y = i;
@@ -1211,9 +1211,11 @@ void bot3(int bott)
 		//}
 	
 
-long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol)
+long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol,int alpha, int beta)
 {
+	int score;
 	int val;
+	int s=0;
 	if (depth == 0) return vygoda(symvol, x, y);
 	if (check_win(symvol, x, y) || check_win(anti(symvol), x, y))
 	{
@@ -1238,10 +1240,14 @@ long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol)
 
 
 	}
+
+
 	if (maxiPlayer)
 	{
 		field[y][x] = (symvol);
 		val = -10000000;
+		score = alpha;
+
 		for (int i = 0; i < y_max; i++)
 		{
 			for (int j = 0; j < x_max; j++)
@@ -1250,14 +1256,19 @@ long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol)
 				{
 					
 
-					val = max( val, minimax(j, i, depth - 1, 0,symvol) );
-
-					
+					s = minimax(j, i, depth - 1, 0,symvol,score,beta) ;
+					if (s > score) score = s;
+					if (score >= beta)
+					{
+						field[y][x] = 0;
+						return score;
+						
+					}
 				}
 			}
 		}
 		field[y][x] = 0;
-		return val;
+		return score;
 	}
 
 	if (!maxiPlayer)
@@ -1265,20 +1276,28 @@ long long int minimax(int x,int y,int depth,int maxiPlayer,int symvol)
 		field[y][x] = anti(symvol);
 
 		val = 10000000;
+		score = beta;
+
 		for (int i = 0; i < y_max; i++)
 		{
 			for (int j = 0; j < x_max; j++)
 			{
 				if (field[i][j] == 0)
 				{
-					val = min(val, minimax(j, i, depth - 1, 1, symvol));
+					s =  minimax(j, i, depth - 1, 1, symvol,alpha,score);
+					if (s < score) score = s;
+					if (score <= alpha)
+					{
+						field[y][x] = 0;
 
+						return score;
+					}
 				}
 			}
 		}
 		field[y][x] = 0;
 
-		return val;
+		return score;
 	}
 
 
@@ -1384,6 +1403,7 @@ void main_menu()
 					setting();
 				if (menu_active_idx == 3)
 				{
+					globalscet = 0;
 					ddde = 1;
 					play();
 
