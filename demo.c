@@ -4,8 +4,10 @@
 #include <string.h>
 #include <stdlib.h> 
 #include <math.h>
+#include <time.h>
 
-
+//FILE* file;
+double vremya;
 int len_ryd=5;
 int ddde = 1;
 char field[20][20] = {0};
@@ -722,6 +724,8 @@ int vygoda(int players_sym, int x, int y)
 }
 int main()
 {
+	//file = fopen("bot.txt", "wt");
+
 	//field[1][0] = 1;
 
 	/*for (int i = 0; i < y_max; i++)
@@ -913,7 +917,8 @@ void player(int playerr)
 				gotoxy(13, 13);
 				printf("________________                      ");
 				gotoxy(13, 13);
-				printf("%d",minimax(x,y,4,1,2,-1000000,1000000) );
+				//printf("%d",minimax(x,y,4,1,2,-1000000,1000000) );
+				printf("%.10f", vremya);
 				//gotoxy(15, 15);
 				//printf("%d", xtemp);
 				//gotoxy(17, 17);
@@ -980,7 +985,7 @@ void player(int playerr)
 //c оценочной норм
 void bot1(int bott)
 {
-
+	clock_t start = clock();
 	if (globalscet == x_max * y_max) return;
 
 	//перенос  в общую функцию
@@ -1020,7 +1025,8 @@ void bot1(int bott)
 			}
 		}
 	}
-	
+	clock_t end = clock();
+	vremya = (double)(end - start) / CLOCKS_PER_SEC;
 	globalscet++;
 
 
@@ -1071,10 +1077,11 @@ void bot1(int bott)
 				gotoxy(currentx, currenty);
 
 			}
+
 //глубина 2 легк
 void bot(int bott)
 {
-	///clock_t start, end;
+	clock_t start = clock();
 	if (globalscet == x_max * y_max) return;
 
 	//перенос  в общую функцию
@@ -1114,9 +1121,9 @@ void bot(int bott)
 			}
 		}
 	}
-	///end time
-	gotoxy(20, 20);
-	//fprintf();
+	clock_t end = clock();
+	vremya = (double)(end - start) / CLOCKS_PER_SEC;
+	//fprintf(file, "\n\n\n%f\n", time);
 	globalscet++;
 
 
@@ -1170,7 +1177,7 @@ void bot(int bott)
 //сложн
 void bot2(int bott)
 {
-
+	clock_t start = clock();
 	if (globalscet == x_max * y_max) return;
 
 	//перенос  в общую функцию
@@ -1222,7 +1229,8 @@ void bot2(int bott)
 			}
 		}
 	}
-
+	clock_t end = clock();
+	vremya = (double)(end - start) / CLOCKS_PER_SEC;
 	globalscet++;
 
 
@@ -1277,7 +1285,7 @@ void bot2(int bott)
 
 void bot3(int bott)
 {
-
+	clock_t start = clock();
 	if (globalscet == x_max * y_max) return;
 
 	//перенос  в общую функцию
@@ -1317,7 +1325,8 @@ void bot3(int bott)
 			}
 		}
 	}
-
+	clock_t end = clock();
+	vremya = (double)(end - start) / CLOCKS_PER_SEC;
 	globalscet++;
 
 
